@@ -34,7 +34,9 @@ test('augments resident tool descriptions with dev_tool_search hint', async () =
   const result = await listener(null, { agent: {} }, async () => assembled)
 
   assert.match(result.tools[0].description, /dev_tool_search/)
+  assert.match(result.tools[0].description, /dev_inject_plugin/)
   assert.match(result.tools[1].description, /dev_tool_search/)
+  assert.match(result.tools[1].description, /dev_inject_plugin/)
   assert.doesNotMatch(result.tools[2].description, /dev_tool_search/)
 })
 
@@ -59,9 +61,13 @@ test('does not duplicate the hint', async () => {
 
   apply(ctx, {})
 
-  const base = { name: 'pwsh', description: 'Run PowerShell\n\nTip: If a needed capability is not listed, call dev_tool_search first to search and unlock it.' }
+  const base = {
+    name: 'pwsh',
+    description: 'Run PowerShell\n\nTip: If a needed capability is not listed, call dev_tool_search first to search and unlock it. For installing or injecting a new plugin, search inject to unlock dev_inject_plugin.',
+  }
   const assembled = { tools: [base] }
   const result = await listener(null, { agent: {} }, async () => assembled)
 
   assert.equal(result.tools[0].description.match(/dev_tool_search/g).length, 1)
+  assert.equal(result.tools[0].description.match(/dev_inject_plugin/g).length, 1)
 })
