@@ -22,6 +22,7 @@ test('apply registers through ctx.effect and returns disposer', () => {
       assert.equal(typeof cleanup, 'function')
       cleanup()
     },
+    on() {},
   }
 
   apply(ctx, {})

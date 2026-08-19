@@ -17,6 +17,7 @@ function createFakeCtx(schemas) {
     effect(fn) {
       fn()
     },
+    on() {},
   }
   return { ctx, getRegistered: () => registered }
 }

@@ -21,6 +21,7 @@ function createFakeCtx() {
       const cleanup = fn()
       assert.equal(typeof cleanup, 'function')
     },
+    on() {},
   }
   return { ctx, getRegistered: () => registered, isDisposed: () => disposed }
 }
