@@ -1,0 +1,14 @@
+# Example: add dsh-global-tool-discovery to a DSH profile
+# Put this in your profile's cordis.patch.yml (or include it via a bundle).
+- insert:
+    - id: dsh-global-tool-discovery
+      name: dsh-global-tool-discovery
+      config:
+        residentTools:
+          - pwsh
+          - str_replace_editor
+          - dev_tool_search
+          - skill_search
+          - skill_load
+        sessionScoped: true
+        maxResults: 25

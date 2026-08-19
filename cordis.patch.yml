@@ -1,0 +1,15 @@
+# dsh-global-tool-discovery bundle patch
+# Install this package into a DSH profile and it will provide a global
+# dev_tool_search to every preset/conversation on that host.
+- insert:
+    - id: dsh-global-tool-discovery
+      name: dsh-global-tool-discovery
+      config:
+        residentTools:
+          - pwsh
+          - str_replace_editor
+          - dev_tool_search
+          - skill_search
+          - skill_load
+        sessionScoped: true
+        maxResults: 25
