@@ -28,7 +28,7 @@ Different DSH presets expose different tool catalogs. Some presets hide globally
 - Global `dev_tool_search` available in every preset/conversation.
 - Session-scoped unlock: new conversations do not inherit unlocked tools.
 - Works with MCP tools and `dsh-super-injector` injected plugins.
-- Does **not** filter `system-prompt/assemble`, so it stays compatible with preset-level bootstrap filters.
+- Registers a non-destructive system-prompt/assemble transform that only augments resident tool descriptions; it never removes/adds tools and never touches preset catalog filters.
 - CJK-aware search.
 - Clean hot-reload/unload via `ctx.effect`.
 
@@ -75,7 +75,7 @@ The unlock is recorded in the current session's `tool/call` events. A new conver
 
 ### Relationship with presets
 
-This plugin **only registers `dev_tool_search`**. It does not control which tools are visible by default.
+This plugin registers dev_tool_search and adds a non-destructive discovery hint to resident tool descriptions. It does not control which tools are visible by default and never removes/adds tools.
 
 - **Bootstrap presets** (e.g. `anchored-standard`): `dev_tool_search` records unlock requests, and the preset's `tool-bootstrap` exposes the tool from the next request.
 - **Full-catalog presets** (e.g. `dev`): all tools are already visible; `dev_tool_search` acts as a catalog search tool.
@@ -126,7 +126,7 @@ MIT
 - 所有 preset / 对话都有全局 `dev_tool_search`。
 - 解锁仅限当前会话，新对话不继承。
 - 兼容 MCP 工具和 `dsh-super-injector` 注入的插件。
-- 不做 `system-prompt/assemble` 过滤，因此不会与 preset 的 tool-bootstrap 冲突。
+- 挂接 system-prompt/assemble 只做非破坏性描述增强，不增删工具，不修改 preset 的目录过滤策略。
 - 支持中文搜索。
 - 通过 `ctx.effect` 注册，热重载/卸载不残留。
 
@@ -173,7 +173,7 @@ dev_tool_search({"toolNames": ["mcp__server__tool_name"]})
 
 ### 与 preset 的关系
 
-本插件只负责注册 `dev_tool_search`，不控制默认可见工具。
+本插件注册 dev_tool_search，并给 resident 工具描述追加非破坏性发现提示。它不控制默认可见工具，也不增删工具。
 
 - **bootstrap 类 preset**（如 `anchored-standard`）：`dev_tool_search` 记录解锁，preset 的 `tool-bootstrap` 会在下一请求显示该工具。
 - **全量目录 preset**（如 `dev`）：所有工具默认可见，`dev_tool_search` 作为目录搜索工具。
@@ -199,5 +199,7 @@ npm run pack:check
 ### License
 
 MIT
+
+
 
 

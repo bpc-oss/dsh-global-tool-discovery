@@ -26,7 +26,7 @@ Preset catalog policy
   - full presets: everything visible, search only
 ```
 
-## Why no assemble filter here
+## Why no catalog filter here
 
 The first implementation filtered `system-prompt/assemble` globally. That
 conflicts with preset-level bootstrap filters (anchored-standard,
@@ -34,8 +34,11 @@ verifier-standard, router-standard) because the final catalog becomes the
 intersection of both keep-sets, dropping tools such as `verifier_doctor` or
 compaction work sets.
 
-This plugin therefore **only** registers `dev_tool_search` and leaves catalog
-policy to presets.
+This plugin therefore never filters the assembled catalog. It only registers
+`dev_tool_search` and applies a **non-destructive description augmentation**:
+resident tool descriptions (`pwsh`/`bash`, `str_replace_editor`) receive a tip
+telling the model to call `dev_tool_search` first. This changes no tool list,
+no preset catalog filter, and no bootstrap behavior.
 
 ## Session-scoped unlock
 
@@ -58,3 +61,4 @@ includes them and `dev_tool_search` can search/unlock them without extra work.
 - Bootstrap presets show unlocked tools from the next request.
 - New conversations do not inherit unlocks.
 - Hot reload/unload leaves no tool registration behind.
+
