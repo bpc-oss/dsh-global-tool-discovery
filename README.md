@@ -55,6 +55,8 @@ Or manually add to your profile's `cordis.patch.yml`:
         maxResults: 25
 ```
 
+> If you mount a local file by absolute path instead of a package name, the `name` must be a `file://` URL (e.g. `file:///C:/path/to/lib/index.mjs`). A bare Windows path like `C:/...` is rejected by the ESM loader and can crash DSH startup.
+
 ### Usage
 
 Search for tools:
@@ -151,6 +153,8 @@ dsh plugin --profile web add <仓库或压缩包>
         maxResults: 25
 ```
 
+> 如果不用包名，而是用绝对路径挂载本地文件，`name` 必须是 `file://` URL（例如 `file:///C:/path/to/lib/index.mjs`）。裸 Windows 路径 `C:/...` 会被 ESM loader 拒绝，可能导致 DSH 启动崩溃。
+
 ### 使用
 
 搜索工具：
@@ -195,3 +199,5 @@ npm run pack:check
 ### License
 
 MIT
+
+
