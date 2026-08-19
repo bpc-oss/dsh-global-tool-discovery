@@ -7,6 +7,7 @@
   "exports": {
     ".": "./lib/index.mjs",
     "./session-unlock": "./lib/session-unlock.mjs",
+    "./skills": "./lib/skills.mjs",
     "./package.json": "./package.json"
   },
   "files": [
@@ -17,7 +18,7 @@
     "docs"
   ],
   "scripts": {
-    "check": "node --check lib/index.mjs && node --check lib/session-unlock.mjs && node --check scripts/check-private.mjs",
+    "check": "node --check lib/index.mjs && node --check lib/session-unlock.mjs && node --check lib/skills.mjs && node --check scripts/check-private.mjs",
     "test": "node --test",
     "check:private": "node scripts/check-private.mjs",
     "pack:check": "npm pack --dry-run"
@@ -43,3 +44,5 @@
     }
   }
 }
+
+

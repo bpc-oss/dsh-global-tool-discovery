@@ -54,6 +54,19 @@ A new session has no such events, so it does not inherit unlocks.
 are registered in the global tool registry, so `ctx.tools.schemas(agent)`
 includes them and `dev_tool_search` can search/unlock them without extra work.
 
+## Global skills
+
+`lib/skills.mjs` provides global `skill_search` / `skill_load` for enabled
+presets/conversations. It uses `exec.agent` as the viewing scope, filters
+`isModelInvocable`, bounds skill body size, and injects loaded skills with
+`source: { kind: 'skill-invocation', ... }`.
+
+Skills are **search/load**, not tool unlock: they are not part of
+`dev_tool_search` unlock semantics.
+
+Per-preset opt-out is supported (`disabledPresets`); worker/minimal presets
+such as `employee-ops` are disabled by default.
+
 ## Verification
 
 - Every preset/conversation has `dev_tool_search`.
@@ -61,4 +74,5 @@ includes them and `dev_tool_search` can search/unlock them without extra work.
 - Bootstrap presets show unlocked tools from the next request.
 - New conversations do not inherit unlocks.
 - Hot reload/unload leaves no tool registration behind.
+
 

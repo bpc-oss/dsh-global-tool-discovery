@@ -10,7 +10,9 @@
 - Configurable `maxResults`, `residentTools`, and `sessionScoped` options.
 - CJK-aware search matching.
 - Proactive discovery hint appended to first-round resident tool descriptions (pwsh/ash, str_replace_editor) — non-destructive, no catalog filtering, no preset changes.
+- Global skill_search / skill_load for enabled presets/conversations with isModelInvocable filtering, body size limits, and per-preset opt-out (mployee-ops disabled by default).
 - `ctx.effect` disposal for clean hot-reload/unload.
 - Privacy scanner script (`scripts/check-private.mjs`).
 - Unit tests and CI workflow.
+
 

@@ -31,6 +31,7 @@ Different DSH presets expose different tool catalogs. Some presets hide globally
 - Registers a non-destructive system-prompt/assemble transform that only augments resident tool descriptions; it never removes/adds tools and never touches preset catalog filters.
 - CJK-aware search.
 - Clean hot-reload/unload via `ctx.effect`.
+- Global `skill_search` / `skill_load` for all enabled presets/conversations.
 
 ### Installation
 
@@ -129,6 +130,7 @@ MIT
 - 挂接 system-prompt/assemble 只做非破坏性描述增强，不增删工具，不修改 preset 的目录过滤策略。
 - 支持中文搜索。
 - 通过 `ctx.effect` 注册，热重载/卸载不残留。
+- 全局 `skill_search` / `skill_load`，启用 preset / 对话可用。
 
 ### 安装
 
