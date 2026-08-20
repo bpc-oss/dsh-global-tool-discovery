@@ -1,4 +1,4 @@
-/**
+﻿/**
  * ASI loop demo.
  *
  * Demonstrates:
@@ -7,8 +7,8 @@
  * Run: node examples/asi-loop.mjs
  */
 
-import { apply as applyResearch } from '../lib/research-orchestrator.mjs'
-import { apply as applyKnowledge } from '../lib/knowledge-ingest.mjs'
+import { apply as applyResearch } from '../lib/research.mjs'
+import { apply as applyKnowledge } from '../lib/knowledge.mjs'
 
 function createCtx() {
   const tools = []
@@ -65,3 +65,4 @@ const { ctx: sctx, tools: stools } = createCtx()
 // The real loop would use skill_search; here we just print the created path.
 console.log('\n=== VERIFY ===')
 console.log('Verify with skill_search/skill_load (in real DSH session).')
+

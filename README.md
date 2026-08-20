@@ -101,7 +101,40 @@ npm run check:private
 npm run pack:check
 ```
 
-### Source Adapters / 来源适配器
+### Bundle Configuration / Bundle 配置
+
+`dsh-global-tool-discovery` 是一个可裁剪 Bundle：
+
+- core：`dev_tool_search`（必选）
+- research：`research_orchestrator` / `research_job_get` / `research_memory_query`（可选）
+- knowledge：`knowledge_ingest`（可选）
+
+```yaml
+- id: dsh-global-tool-discovery
+  name: dsh-global-tool-discovery
+  config:
+    enableResearch: true
+    enableKnowledge: true
+    adapterWhitelist: ["rss", "hackernews"]
+```
+
+| 配置 | 默认 | 说明 |
+|---|---|---|
+| `enableResearch` | `true` | 是否挂载 research 工具 |
+| `enableKnowledge` | `true` | 是否挂载 knowledge_ingest |
+| `adapterWhitelist` | `["rss","hackernews"]` | 启用的外部来源适配器白名单 |
+
+轻量模式（只保留 core）：
+
+```yaml
+config:
+  enableResearch: false
+  enableKnowledge: false
+  adapterWhitelist: []
+```
+
+## Source Adapters / 来源适配器
+
 
 `research_orchestrator` 支持通过注册表扩展来源：
 
