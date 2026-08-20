@@ -11,8 +11,11 @@
 - CJK-aware search matching.
 - Proactive discovery hint appended to first-round resident tool descriptions (pwsh/ash, str_replace_editor) — non-destructive, no catalog filtering, no preset changes.
 - Global skill_search / skill_load for enabled presets/conversations with isModelInvocable filtering, body size limits, and per-preset opt-out (mployee-ops disabled by default).
+- Async esearch_orchestrator / esearch_job_get for background multi-source research (litkit, Exa, agent-reach).
+- knowledge_ingest to turn research findings into reusable SKILL.md files.
 - `ctx.effect` disposal for clean hot-reload/unload.
 - Privacy scanner script (`scripts/check-private.mjs`).
 - Unit tests and CI workflow.
+
 
 

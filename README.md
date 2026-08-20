@@ -32,6 +32,8 @@ Different DSH presets expose different tool catalogs. Some presets hide globally
 - CJK-aware search.
 - Clean hot-reload/unload via `ctx.effect`.
 - Global `skill_search` / `skill_load` for all enabled presets/conversations.
+- Async `research_orchestrator` + `research_job_get` for background multi-source research.
+- `knowledge_ingest` to turn findings into reusable SKILL.md.
 
 ### Installation
 
@@ -131,6 +133,8 @@ MIT
 - 支持中文搜索。
 - 通过 `ctx.effect` 注册，热重载/卸载不残留。
 - 全局 `skill_search` / `skill_load`，启用 preset / 对话可用。
+- 异步 `research_orchestrator` / `research_job_get`，后台多源研究。
+- `knowledge_ingest`，把研究结果沉淀为 SKILL.md。
 
 ### 安装
 
