@@ -56,3 +56,18 @@ test('knowledge_ingest memory mode appends summary', async () => {
   assert.match(result.text, /Research memory appended/)
 })
 
+
+test('knowledge_ingest skill onConflict skip does not overwrite', async () => {
+  const { ctx, tools } = createCtx()
+  apply(ctx, {})
+  const name = `conflict-test-${Date.now().toString(36)}`
+  const first = await tools[0].execute({ mode: 'skill', name, description: 'first', content: 'v1' }, { agent: {} })
+  assert.match(first.text, /Skill created/)
+  const second = await tools[0].execute({ mode: 'skill', name, description: 'second', content: 'v2', onConflict: 'skip' }, { agent: {} })
+  assert.match(second.text, /skipped/)
+  // cleanup
+  const { rmSync } = await import('node:fs')
+  const { join } = await import('node:path')
+  const { homedir } = await import('node:os')
+  rmSync(join(homedir(), '.dsh', 'skills', name), { recursive: true, force: true })
+})
