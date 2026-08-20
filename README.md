@@ -133,6 +133,18 @@ config:
   adapterWhitelist: []
 ```
 
+## SearXNG Instance / SearXNG 实例
+
+esearch_orchestrator 默认使用自托管 SearXNG 实例：
+
+`	ext
+http://45.32.116.133:18080
+`
+
+该实例已配置 JSON API 并关闭 limiter，作为 searxng 来源的高优先级实例。
+
+如需更换，可修改 lib/research.mjs 中的 DEFAULT_SEARXNG_INSTANCES。
+
 ## Source Adapters / 来源适配器
 
 
@@ -255,7 +267,19 @@ npm run check:private
 npm run pack:check
 ```
 
-### Source Adapters / 来源适配器
+### SearXNG Instance / SearXNG 实例
+
+esearch_orchestrator 默认使用自托管 SearXNG 实例：
+
+`	ext
+http://45.32.116.133:18080
+`
+
+该实例已配置 JSON API 并关闭 limiter，作为 searxng 来源的高优先级实例。
+
+如需更换，可修改 lib/research.mjs 中的 DEFAULT_SEARXNG_INSTANCES。
+
+## Source Adapters / 来源适配器
 
 `research_orchestrator` 支持通过注册表扩展来源：
 
@@ -278,6 +302,8 @@ examples/source-adapter.mjs
 ## License
 
 MIT
+
+
 
 
 
