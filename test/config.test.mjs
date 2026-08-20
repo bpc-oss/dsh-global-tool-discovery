@@ -3,11 +3,11 @@ import assert from 'node:assert/strict'
 import { apply } from '../lib/index.mjs'
 
 function createFakeCtx(schemas) {
-  let registered = null
+  let registered = []
   const ctx = {
     tools: {
       register(def) {
-        registered = def
+        registered.push(def)
         return () => {}
       },
       schemas() {
@@ -19,7 +19,7 @@ function createFakeCtx(schemas) {
     },
     on() {},
   }
-  return { ctx, getRegistered: () => registered }
+  return { ctx, getTool: (name) => registered.find((t) => t.name === name) }
 }
 
 test('execute respects maxResults', async () => {
@@ -27,17 +27,17 @@ test('execute respects maxResults', async () => {
     name: `tool_${i}`,
     description: 'same keyword for search',
   }))
-  const { ctx, getRegistered } = createFakeCtx(schemas)
+  const { ctx, getTool } = createFakeCtx(schemas)
   apply(ctx, { maxResults: 5 })
 
-  const result = await getRegistered().execute({ query: 'keyword' }, { agent: {} })
+  const result = await getTool('dev_tool_search').execute({ query: 'keyword' }, { agent: {} })
   assert.match(result.text, /Matching tools \(5 of 30\)/)
   assert.match(result.text, /truncated at 5/)
 })
 
 test('execute returns unlock confirmation even without query', async () => {
-  const { ctx, getRegistered } = createFakeCtx([])
+  const { ctx, getTool } = createFakeCtx([])
   apply(ctx, {})
-  const result = await getRegistered().execute({ toolNames: ['mcp__x__a'] }, { agent: {} })
+  const result = await getTool('dev_tool_search').execute({ toolNames: ['mcp__x__a'] }, { agent: {} })
   assert.match(result.text, /Unlocked for this session/)
 })
