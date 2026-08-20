@@ -22,15 +22,26 @@
 - [ ] `knowledge_ingest` 可执行
 - [ ] `employee-ops`（若禁用）按预期不可用或明确返回禁用信息
 
-## 验证结果（重启前）
+## 验证结果
+
+### 重启后（当前真实会话，anchored-standard 系）
+
+| 工具 | 可搜索 | 备注 |
+|---|---|---|
+| research_orchestrator | ✅ | 已解锁并触发内部能力检测 |
+| research_job_get | ✅ | 已解锁 |
+| research_memory_query | ✅ | 已解锁并查询到 3 条记忆 |
+| knowledge_ingest | ✅ | 已解锁，plugin dry-run 正常 |
+
+### 重启前（dev / anchored-standard / verifier-standard 子代理）
 
 | Preset | research_orchestrator | research_job_get | research_memory_query | knowledge_ingest |
 |---|---|---|---|---|
-| dev | ✅ 可搜到 | ✅ 可搜到 | ❌ 未找到（需重启后复验） | ✅ 可搜到 |
-| anchored-standard | ✅ 可搜到 | ✅ 可搜到 | ❌ 未找到（需重启后复验） | ✅ 可搜到 |
-| verifier-standard | ✅ 可搜到 | ✅ 可搜到 | ❌ 未找到（需重启后复验） | ✅ 可搜到 |
+| dev | ✅ | ✅ | ❌（当时未加载最新代码） | ✅ |
+| anchored-standard | ✅ | ✅ | ❌（当时未加载最新代码） | ✅ |
+| verifier-standard | ✅ | ✅ | ❌（当时未加载最新代码） | ✅ |
 
-> 说明：`research_memory_query` 在最新代码中已实现，但当前 DSH host 尚未重启加载最新版；重启后需重新验证。
+> 重启后 `research_memory_query` 已在当前会话验证通过；由于全局插件由同一 profile 加载，理论上 dev / verifier-standard 等 preset 同样可用，待后续用子代理会话补录。
 
 ## 说明
 
