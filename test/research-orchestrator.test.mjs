@@ -1,4 +1,4 @@
-import test from 'node:test'
+﻿import test from 'node:test'
 import assert from 'node:assert/strict'
 import { apply } from '../lib/research-orchestrator.mjs'
 
@@ -23,7 +23,7 @@ function createCtx() {
 test('apply registers research_orchestrator and research_job_get', () => {
   const { ctx, tools } = createCtx()
   apply(ctx, {})
-  assert.deepEqual(tools.map((t) => t.name), ['research_orchestrator', 'research_job_get'])
+  assert.deepEqual(tools.map((t) => t.name), ['research_orchestrator', 'research_job_get', 'research_memory_query'])
 })
 
 test('research_orchestrator starts a job and returns jobId (no external sources)', async () => {
@@ -46,3 +46,4 @@ test('research_job_get reports unknown job', async () => {
   const status = await tools[1].execute({ jobId: 'missing' }, { agent: {} })
   assert.match(status.text, /not found/)
 })
+
