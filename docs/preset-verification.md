@@ -22,6 +22,16 @@
 - [ ] `knowledge_ingest` 可执行
 - [ ] `employee-ops`（若禁用）按预期不可用或明确返回禁用信息
 
+## 验证结果（重启前）
+
+| Preset | research_orchestrator | research_job_get | research_memory_query | knowledge_ingest |
+|---|---|---|---|---|
+| dev | ✅ 可搜到 | ✅ 可搜到 | ❌ 未找到（需重启后复验） | ✅ 可搜到 |
+| anchored-standard | ✅ 可搜到 | ✅ 可搜到 | ❌ 未找到（需重启后复验） | ✅ 可搜到 |
+| verifier-standard | ✅ 可搜到 | ✅ 可搜到 | ❌ 未找到（需重启后复验） | ✅ 可搜到 |
+
+> 说明：`research_memory_query` 在最新代码中已实现，但当前 DSH host 尚未重启加载最新版；重启后需重新验证。
+
 ## 说明
 
 - 全局工具由 `index.apply` 统一挂载，理论上所有未禁用 preset 均可使用。
