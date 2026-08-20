@@ -24,7 +24,17 @@ enableKnowledge: true
 adapterWhitelist: ["rss", "hackernews"]
 ```
 
+## 待验证：真实 host 冒烟
+
+发布前必须完成以下真实 DSH host 验证：
+
+- [ ] 故意破坏 `research.mjs`（语法错误/改名），确认 core 仍能 boot
+- [ ] 故意缺失 adapters 文件，确认 research 仍可用（少适配器）
+- [ ] 异步 apply 被 DSH loader 接受，热重载/卸载干净
+- [ ] dev / anchored-standard / verifier-standard 的 `research_memory_query` 补录
+
 ## 兼容
+
 
 - 旧子路径 `./research-orchestrator` / `./knowledge-ingest` 保留 shim
 - 新增 `./core` / `./research` / `./knowledge` / `./registry`
