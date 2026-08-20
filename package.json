@@ -17,7 +17,8 @@
     "cordis.patch.yml",
     "README.md",
     "LICENSE",
-    "docs"
+    "docs",
+    "adapters"
   ],
   "scripts": {
     "check": "node --check lib/index.mjs && node --check lib/session-unlock.mjs && node --check lib/skills.mjs && node --check lib/research-orchestrator.mjs && node --check lib/knowledge-ingest.mjs && node --check scripts/check-private.mjs",
@@ -46,6 +47,3 @@
     }
   }
 }
-
-
-

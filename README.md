@@ -1,8 +1,8 @@
-# dsh-global-tool-discovery
+﻿# dsh-global-tool-discovery
 
 Global, session-scoped tool discovery and unlock for [DSH](https://github.com/deepseek-ai/deepseek-harness).
 
-> **English** | [中文](#中文说明)
+> **English** | [涓枃](#涓枃璇存槑)
 
 ---
 
@@ -17,7 +17,7 @@ It lets any conversation:
 - Search all globally registered profile tools, including MCP tools.
 - Unlock hidden tools **for the current conversation only**.
 - Use tools injected by `dsh-super-injector` immediately.
-- Start fresh in a new conversation — unlocked tools are **not inherited**.
+- Start fresh in a new conversation 鈥?unlocked tools are **not inherited**.
 
 ### Why this plugin exists
 
@@ -101,48 +101,68 @@ npm run check:private
 npm run pack:check
 ```
 
-### License
+### Source Adapters / 来源适配器
+
+`research_orchestrator` 支持通过注册表扩展来源：
+
+```js
+import { registerSourceAdapter } from 'dsh-global-tool-discovery'
+registerSourceAdapter('rss', rssAdapter)
+registerSourceAdapter('hackernews', hackernewsAdapter)
+```
+
+内置示例：
+
+```text
+adapters/rss.mjs
+adapters/hackernews.mjs
+examples/source-adapter.mjs
+```
+
+自定义适配器只需实现 `search(query, limit, timeout)`；`normalize` 为可选。
+
+## License
 
 MIT
 
 ---
 
-## 中文说明
+## 涓枃璇存槑
 
-### 简介
+### 绠€浠?
 
-`dsh-global-tool-discovery` 为 **所有 preset / 所有对话** 提供一个统一的 `dev_tool_search` 工具。
+`dsh-global-tool-discovery` 涓?**鎵€鏈?preset / 鎵€鏈夊璇?* 鎻愪緵涓€涓粺涓€鐨?`dev_tool_search` 宸ュ叿銆?
 
-每个对话都可以：
+姣忎釜瀵硅瘽閮藉彲浠ワ細
 
-- 搜索全局 profile 中已注册的工具，包括 MCP 工具。
-- **仅针对当前对话**解锁隐藏工具。
-- 立即使用 `dsh-super-injector` 新注入的插件。
-- 新对话不继承旧对话的解锁状态。
+- 鎼滅储鍏ㄥ眬 profile 涓凡娉ㄥ唽鐨勫伐鍏凤紝鍖呮嫭 MCP 宸ュ叿銆?
+- **浠呴拡瀵瑰綋鍓嶅璇?*瑙ｉ攣闅愯棌宸ュ叿銆?
+- 绔嬪嵆浣跨敤 `dsh-super-injector` 鏂版敞鍏ョ殑鎻掍欢銆?
+- 鏂板璇濅笉缁ф壙鏃у璇濈殑瑙ｉ攣鐘舵€併€?
 
-### 为什么需要它
+### 涓轰粈涔堥渶瑕佸畠
 
-不同 DSH preset 的工具目录不同。有些 preset 会把全局工具藏起来，有些则全部可见。这个插件提供一个全局统一的发现层，同时不改变任何 preset 自己的目录策略。
+涓嶅悓 DSH preset 鐨勫伐鍏风洰褰曚笉鍚屻€傛湁浜?preset 浼氭妸鍏ㄥ眬宸ュ叿钘忚捣鏉ワ紝鏈変簺鍒欏叏閮ㄥ彲瑙併€傝繖涓彃浠舵彁渚涗竴涓叏灞€缁熶竴鐨勫彂鐜板眰锛屽悓鏃朵笉鏀瑰彉浠讳綍 preset 鑷繁鐨勭洰褰曠瓥鐣ャ€?
 
-### 特性
+### 鐗规€?
 
-- 所有 preset / 对话都有全局 `dev_tool_search`。
-- 解锁仅限当前会话，新对话不继承。
-- 兼容 MCP 工具和 `dsh-super-injector` 注入的插件。
-- 挂接 system-prompt/assemble 只做非破坏性描述增强，不增删工具，不修改 preset 的目录过滤策略。
-- 支持中文搜索。
-- 通过 `ctx.effect` 注册，热重载/卸载不残留。
-- 全局 `skill_search` / `skill_load`，启用 preset / 对话可用。
-- 异步 `research_orchestrator` / `research_job_get`，后台多源研究。
-- `knowledge_ingest`，把研究结果沉淀为 SKILL.md。
+- 鎵€鏈?preset / 瀵硅瘽閮芥湁鍏ㄥ眬 `dev_tool_search`銆?
+- 瑙ｉ攣浠呴檺褰撳墠浼氳瘽锛屾柊瀵硅瘽涓嶇户鎵裤€?
+- 鍏煎 MCP 宸ュ叿鍜?`dsh-super-injector` 娉ㄥ叆鐨勬彃浠躲€?
+- 鎸傛帴 system-prompt/assemble 鍙仛闈炵牬鍧忔€ф弿杩板寮猴紝涓嶅鍒犲伐鍏凤紝涓嶄慨鏀?preset 鐨勭洰褰曡繃婊ょ瓥鐣ャ€?
+- 鏀寔涓枃鎼滅储銆?
+- 閫氳繃 `ctx.effect` 娉ㄥ唽锛岀儹閲嶈浇/鍗歌浇涓嶆畫鐣欍€?
+- 鍏ㄥ眬 `skill_search` / `skill_load`锛屽惎鐢?preset / 瀵硅瘽鍙敤銆?
+- 寮傛 `research_orchestrator` / `research_job_get`锛屽悗鍙板婧愮爺绌躲€?
+- `knowledge_ingest`锛屾妸鐮旂┒缁撴灉娌夋穩涓?SKILL.md銆?
 
-### 安装
+### 瀹夎
 
 ```bash
-dsh plugin --profile web add <仓库或压缩包>
+dsh plugin --profile web add <浠撳簱鎴栧帇缂╁寘>
 ```
 
-或手动在 profile 的 `cordis.patch.yml` 中挂载：
+鎴栨墜鍔ㄥ湪 profile 鐨?`cordis.patch.yml` 涓寕杞斤細
 
 ```yaml
 - insert:
@@ -159,41 +179,41 @@ dsh plugin --profile web add <仓库或压缩包>
         maxResults: 25
 ```
 
-> 如果不用包名，而是用绝对路径挂载本地文件，`name` 必须是 `file://` URL（例如 `file:///C:/path/to/lib/index.mjs`）。裸 Windows 路径 `C:/...` 会被 ESM loader 拒绝，可能导致 DSH 启动崩溃。
+> 濡傛灉涓嶇敤鍖呭悕锛岃€屾槸鐢ㄧ粷瀵硅矾寰勬寕杞芥湰鍦版枃浠讹紝`name` 蹇呴』鏄?`file://` URL锛堜緥濡?`file:///C:/path/to/lib/index.mjs`锛夈€傝８ Windows 璺緞 `C:/...` 浼氳 ESM loader 鎷掔粷锛屽彲鑳藉鑷?DSH 鍚姩宕╂簝銆?
 
-### 使用
+### 浣跨敤
 
-搜索工具：
+鎼滅储宸ュ叿锛?
 
 ```text
 dev_tool_search({"query": "chrome"})
 ```
 
-解锁工具（仅当前会话）：
+瑙ｉ攣宸ュ叿锛堜粎褰撳墠浼氳瘽锛夛細
 
 ```text
 dev_tool_search({"toolNames": ["mcp__server__tool_name"]})
 ```
 
-解锁记录写入当前 session 的 `tool/call` 事件。新对话没有这些事件，所以不会继承。
+瑙ｉ攣璁板綍鍐欏叆褰撳墠 session 鐨?`tool/call` 浜嬩欢銆傛柊瀵硅瘽娌℃湁杩欎簺浜嬩欢锛屾墍浠ヤ笉浼氱户鎵裤€?
 
-### 与 preset 的关系
+### 涓?preset 鐨勫叧绯?
 
-本插件注册 dev_tool_search，并给 resident 工具描述追加非破坏性发现提示。它不控制默认可见工具，也不增删工具。
+鏈彃浠舵敞鍐?dev_tool_search锛屽苟缁?resident 宸ュ叿鎻忚堪杩藉姞闈炵牬鍧忔€у彂鐜版彁绀恒€傚畠涓嶆帶鍒堕粯璁ゅ彲瑙佸伐鍏凤紝涔熶笉澧炲垹宸ュ叿銆?
 
-- **bootstrap 类 preset**（如 `anchored-standard`）：`dev_tool_search` 记录解锁，preset 的 `tool-bootstrap` 会在下一请求显示该工具。
-- **全量目录 preset**（如 `dev`）：所有工具默认可见，`dev_tool_search` 作为目录搜索工具。
-- **`dsh-super-injector`**：注入的插件自动进入全局工具注册表，因此可被搜索；在支持解锁的 preset 中可解锁。
+- **bootstrap 绫?preset**锛堝 `anchored-standard`锛夛細`dev_tool_search` 璁板綍瑙ｉ攣锛宲reset 鐨?`tool-bootstrap` 浼氬湪涓嬩竴璇锋眰鏄剧ず璇ュ伐鍏枫€?
+- **鍏ㄩ噺鐩綍 preset**锛堝 `dev`锛夛細鎵€鏈夊伐鍏烽粯璁ゅ彲瑙侊紝`dev_tool_search` 浣滀负鐩綍鎼滅储宸ュ叿銆?
+- **`dsh-super-injector`**锛氭敞鍏ョ殑鎻掍欢鑷姩杩涘叆鍏ㄥ眬宸ュ叿娉ㄥ唽琛紝鍥犳鍙鎼滅储锛涘湪鏀寔瑙ｉ攣鐨?preset 涓彲瑙ｉ攣銆?
 
-### 配置
+### 閰嶇疆
 
-| 配置项 | 默认值 | 说明 |
+| 閰嶇疆椤?| 榛樿鍊?| 璇存槑 |
 |---|---|---|
-| `residentTools` | `["pwsh","str_replace_editor","dev_tool_search","skill_search","skill_load"]` | 仅用于描述文案，不参与过滤 |
-| `sessionScoped` | `true` | 是否使用会话级解锁描述 |
-| `maxResults` | `25` | 搜索结果上限 |
+| `residentTools` | `["pwsh","str_replace_editor","dev_tool_search","skill_search","skill_load"]` | 浠呯敤浜庢弿杩版枃妗堬紝涓嶅弬涓庤繃婊?|
+| `sessionScoped` | `true` | 鏄惁浣跨敤浼氳瘽绾цВ閿佹弿杩?|
+| `maxResults` | `25` | 鎼滅储缁撴灉涓婇檺 |
 
-### 开发
+### 寮€鍙?
 
 ```bash
 npm run check
@@ -202,9 +222,30 @@ npm run check:private
 npm run pack:check
 ```
 
-### License
+### Source Adapters / 来源适配器
+
+`research_orchestrator` 支持通过注册表扩展来源：
+
+```js
+import { registerSourceAdapter } from 'dsh-global-tool-discovery'
+registerSourceAdapter('rss', rssAdapter)
+registerSourceAdapter('hackernews', hackernewsAdapter)
+```
+
+内置示例：
+
+```text
+adapters/rss.mjs
+adapters/hackernews.mjs
+examples/source-adapter.mjs
+```
+
+自定义适配器只需实现 `search(query, limit, timeout)`；`normalize` 为可选。
+
+## License
 
 MIT
+
 
 
 
