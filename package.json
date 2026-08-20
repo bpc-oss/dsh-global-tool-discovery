@@ -10,7 +10,11 @@
     "./skills": "./lib/skills.mjs",
     "./research-orchestrator": "./lib/research-orchestrator.mjs",
     "./knowledge-ingest": "./lib/knowledge-ingest.mjs",
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./core": "./lib/core.mjs",
+    "./research": "./lib/research.mjs",
+    "./knowledge": "./lib/knowledge.mjs",
+    "./registry": "./lib/registry.mjs"
   },
   "files": [
     "lib",
@@ -21,7 +25,7 @@
     "adapters"
   ],
   "scripts": {
-    "check": "node --check lib/index.mjs && node --check lib/session-unlock.mjs && node --check lib/skills.mjs && node --check lib/research-orchestrator.mjs && node --check lib/knowledge-ingest.mjs && node --check adapters/rss.mjs && node --check adapters/hackernews.mjs && node --check examples/source-adapter.mjs && node --check scripts/check-private.mjs",
+    "check": "node --check lib/index.mjs && node --check lib/core.mjs && node --check lib/research.mjs && node --check lib/knowledge.mjs && node --check lib/registry.mjs && node --check lib/session-unlock.mjs && node --check lib/skills.mjs && node --check lib/research-orchestrator.mjs && node --check lib/knowledge-ingest.mjs && node --check adapters/rss.mjs && node --check adapters/hackernews.mjs && node --check examples/source-adapter.mjs && node --check scripts/check-private.mjs",
     "test": "node --test",
     "check:private": "node scripts/check-private.mjs",
     "pack:check": "npm pack --dry-run"
