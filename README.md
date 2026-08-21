@@ -120,6 +120,7 @@ npm run pack:check
 
 | 配置 | 默认 | 说明 |
 |---|---|---|
+| `enableSkills` | `true` | 是否挂载 skill_search / skill_load |
 | `enableResearch` | `true` | 是否挂载 research 工具 |
 | `enableKnowledge` | `true` | 是否挂载 knowledge_ingest |
 | `adapterWhitelist` | `["rss","hackernews"]` | 启用的外部来源适配器白名单 |
@@ -135,7 +136,8 @@ config:
 
 ## SearXNG Instance / SearXNG 实例
 
-esearch_orchestrator 默认使用自托管 SearXNG 实例：
+
+esearch_orchestrator 默认使用自托管 SearXNG 实例：
 
 `	ext
 http://45.32.116.133:18080
@@ -269,7 +271,8 @@ npm run pack:check
 
 ### SearXNG Instance / SearXNG 实例
 
-esearch_orchestrator 默认使用自托管 SearXNG 实例：
+
+esearch_orchestrator 默认使用自托管 SearXNG 实例：
 
 `	ext
 http://45.32.116.133:18080
