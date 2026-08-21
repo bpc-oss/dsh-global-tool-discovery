@@ -1,6 +1,6 @@
 {
   "name": "dsh-global-tool-discovery",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Global, session-scoped tool discovery and unlock for DSH. Provides dev_tool_search to every preset/conversation.",
   "type": "module",
   "main": "./lib/index.mjs",

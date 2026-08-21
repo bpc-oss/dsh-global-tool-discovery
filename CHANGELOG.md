@@ -1,5 +1,17 @@
 ﻿# Changelog
 
+## [0.2.1] - 2026-08-21
+
+### Added
+
+- Host smoke script (scripts/host-smoke.ps1).
+- VPS SearXNG instance as default high-priority source.
+
+### Fixed
+
+- Local profile now includes egistry.mjs for the refactored bundle.
+- Host smoke items 1-2 verified on homepc (broken research / missing adapters).
+
 ## [0.2.0] - 2026-08-20
 
 ### Added
@@ -41,6 +53,7 @@
 - `ctx.effect` disposal for clean hot-reload/unload.
 - Privacy scanner script (`scripts/check-private.mjs`).
 - Unit tests and CI workflow.
+
 
 
 
