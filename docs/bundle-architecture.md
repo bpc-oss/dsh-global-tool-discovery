@@ -30,7 +30,7 @@ adapterWhitelist: ["rss", "hackernews"]
 
 - [x] 故意破坏 `research.mjs`（语法错误/改名），确认 core 仍能 boot（homepc 实测通过：core 注册 + research 被跳过 + knowledge 正常）
 - [x] 故意缺失 adapters 文件，确认 research 仍可用（homepc 实测通过：research 工具全部注册，仅缺少 rss/hackernews）
-- [ ] 异步 apply 被 DSH loader 接受，热重载/卸载干净（file:// URL 挂载已通过；package-name 安装仍在排查 hang）
+- [x] 异步 apply 被 DSH loader 接受，热重载/卸载干净（homepc 实测：package-name 安装后 dump-config 正常退出）
 - [ ] dev / anchored-standard / verifier-standard 的 `research_memory_query` 补录
 
 ## 兼容
